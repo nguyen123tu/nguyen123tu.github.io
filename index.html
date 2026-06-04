@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Blog</title>
+    <meta name="description" content="Personal blog and portfolio. Thoughts on design, development, and life.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="dark-theme">
+    <div class="noise"></div>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="#" class="logo">User<span class="dot">.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#articles">Articles</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="hero" class="hero section-reveal">
+            <div class="hero-content">
+                <span class="badge">Welcome</span>
+                <h1 class="hero-title">Crafting digital <br><span class="text-gradient">experiences.</span></h1>
+                <p class="hero-subtitle">I'm a developer and designer focusing on building elegant, performant, and beautiful interfaces without the noise.</p>
+                <div class="hero-actions">
+                    <a href="#articles" class="btn btn-primary">Read Articles</a>
+                    <a href="https://github.com" target="_blank" class="btn btn-secondary"><i data-lucide="github"></i> GitHub</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="articles" class="articles section-reveal">
+            <div class="section-header">
+                <h2>Latest Writings</h2>
+                <a href="#" class="view-all">View all <i data-lucide="arrow-right"></i></a>
+            </div>
+            <div class="grid">
+                <article class="card">
+                    <div class="card-date">May 24, 2026</div>
+                    <h3><a href="#">The Art of Minimalism in UI Design</a></h3>
+                    <p>Exploring how removing the unnecessary can elevate the user experience to new heights without relying on flashy elements.</p>
+                    <div class="tags">
+                        <span class="tag">Design</span>
+                        <span class="tag">UI/UX</span>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-date">Apr 12, 2026</div>
+                    <h3><a href="#">Building a Modern Tech Stack</a></h3>
+                    <p>A deep dive into the tools and frameworks that power today's most scalable and maintainable web applications.</p>
+                    <div class="tags">
+                        <span class="tag">Development</span>
+                        <span class="tag">Architecture</span>
+                    </div>
+                </article>
+                <article class="card">
+                    <div class="card-date">Mar 05, 2026</div>
+                    <h3><a href="#">Why Typography Matters</a></h3>
+                    <p>Good typography is invisible, but it profoundly affects how we consume and understand information on the web.</p>
+                    <div class="tags">
+                        <span class="tag">Typography</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" class="projects section-reveal">
+             <div class="section-header">
+                <h2>Selected Projects</h2>
+            </div>
+            <div class="grid">
+                <div class="project-card">
+                    <div class="project-icon"><i data-lucide="box"></i></div>
+                    <div class="project-info">
+                        <h3><a href="#">Nexus Framework</a></h3>
+                        <p>A lightweight CSS framework built for speed and accessibility.</p>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-icon"><i data-lucide="cpu"></i></div>
+                    <div class="project-info">
+                        <h3><a href="#">AI Synthesizer</a></h3>
+                        <p>An open-source voice synthesizer powered by deep learning models.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 User. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i data-lucide="twitter"></i></a>
+                <a href="#"><i data-lucide="github"></i></a>
+                <a href="#"><i data-lucide="linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
