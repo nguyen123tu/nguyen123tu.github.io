@@ -187,6 +187,36 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Initialize Lenis (Smooth Scroll)
+    if (typeof Lenis !== 'undefined') {
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            smooth: true
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+    }
+
+    // Live Local Time Widget
+    const timeDisplay = document.getElementById('live-time');
+    if (timeDisplay) {
+        function updateTime() {
+            const now = new Date();
+            // Lấy giờ Việt Nam
+            const options = { timeZone: 'Asia/Ho_Chi_Minh', hour: '2-digit', minute: '2-digit', hour12: false };
+            const timeString = new Intl.DateTimeFormat('vi-VN', options).format(now);
+            timeDisplay.textContent = `📍 Vietnam • ${timeString} (Available)`;
+        }
+        updateTime();
+        setInterval(updateTime, 60000); // Cập nhật mỗi phút
+    }
+
     // Lightbox Logic
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
