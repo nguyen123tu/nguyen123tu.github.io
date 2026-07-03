@@ -8,11 +8,25 @@
     <meta name="description"
         content="Personal portfolio and blog of Nguyen Tung. Software Developer passionate about AI, Web Development, and technology.">
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@0.344.0"></script>
 </head>
 
 <body class="dark-theme">
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-logo">Tune<span class="dot">.</span></div>
+        <div class="loader-bar"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor"></div>
+
+    <div class="ambient-light light-1"></div>
+    <div class="ambient-light light-2"></div>
+    <div class="ambient-light light-3"></div>
     <div class="noise"></div>
 
     <nav class="navbar">
@@ -25,6 +39,11 @@
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#ImageChill">ImageChiller</a></li>
             </ul>
+
+            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
+                <i data-lucide="sun" class="sun-icon"></i>
+                <i data-lucide="moon" class="moon-icon"></i>
+            </button>
         </div>
     </nav>
 
@@ -41,9 +60,7 @@
                 </h1>
 
                 <p class="hero-subtitle">
-                    Software Developer passionate about AI, Web Development,
-                    database systems, and building practical digital solutions
-                    that create real-world value.
+                    <span id="typed-text"></span><span class="typing-cursor">|</span>
                 </p>
 
                 <div class="hero-actions">
@@ -55,6 +72,32 @@
                         <i data-lucide="github"></i>
                         GitHub
                     </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section id="skills" class="skills-section section-reveal">
+            <div class="section-header">
+                <h2>Tech Stack</h2>
+            </div>
+            <div class="marquee-wrapper">
+                <div class="marquee">
+                    <div class="marquee-content">
+                        <div class="skill-tag"><i data-lucide="code-2"></i> HTML5 & CSS3</div>
+                        <div class="skill-tag"><i data-lucide="file-json"></i> JavaScript</div>
+                        <div class="skill-tag"><i data-lucide="terminal"></i> Python</div>
+                        <div class="skill-tag"><i data-lucide="database"></i> SQL Server</div>
+                        <div class="skill-tag"><i data-lucide="cpu"></i> C#</div>
+                        <div class="skill-tag"><i data-lucide="bot"></i> AI Workflows</div>
+                        <!-- Duplicated for infinite scroll -->
+                        <div class="skill-tag"><i data-lucide="code-2"></i> HTML5 & CSS3</div>
+                        <div class="skill-tag"><i data-lucide="file-json"></i> JavaScript</div>
+                        <div class="skill-tag"><i data-lucide="terminal"></i> Python</div>
+                        <div class="skill-tag"><i data-lucide="database"></i> SQL Server</div>
+                        <div class="skill-tag"><i data-lucide="cpu"></i> C#</div>
+                        <div class="skill-tag"><i data-lucide="bot"></i> AI Workflows</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -253,6 +296,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top -->
+    <div id="back-to-top" class="back-to-top">
+        <i data-lucide="arrow-up"></i>
+    </div>
+
+    <!-- Vanilla Tilt for 3D Effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
 
     <script src="script.js"></script>
 
