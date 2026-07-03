@@ -41,6 +41,11 @@
         </audio>
     </div>
 
+    <!-- Virtual Pixel Pet -->
+    <div id="virtual-pet">
+        <img src="https://media.tenor.com/2lFhFMB1Ym8AAAAj/walking-cat-walking.gif" alt="Pixel Cat">
+    </div>
+
     <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
 
@@ -103,26 +108,32 @@
         </section>
 
         <!-- Tech Stack Section -->
-        <section id="skills" class="skills-section section-reveal">
-            <div class="section-header">
-                <h2>Tech Stack</h2>
-            </div>
-            <div class="marquee-wrapper">
-                <div class="marquee">
-                    <div class="marquee-content">
-                        <div class="skill-tag"><i data-lucide="code-2"></i> HTML5 & CSS3</div>
-                        <div class="skill-tag"><i data-lucide="file-json"></i> JavaScript</div>
-                        <div class="skill-tag"><i data-lucide="terminal"></i> Python</div>
-                        <div class="skill-tag"><i data-lucide="database"></i> SQL Server</div>
-                        <div class="skill-tag"><i data-lucide="cpu"></i> C#</div>
-                        <div class="skill-tag"><i data-lucide="bot"></i> AI Workflows</div>
-                        <!-- Duplicated for infinite scroll -->
-                        <div class="skill-tag"><i data-lucide="code-2"></i> HTML5 & CSS3</div>
-                        <div class="skill-tag"><i data-lucide="file-json"></i> JavaScript</div>
-                        <div class="skill-tag"><i data-lucide="terminal"></i> Python</div>
-                        <div class="skill-tag"><i data-lucide="database"></i> SQL Server</div>
-                        <div class="skill-tag"><i data-lucide="cpu"></i> C#</div>
-                        <div class="skill-tag"><i data-lucide="bot"></i> AI Workflows</div>
+        <section class="tech-stack-section section-reveal">
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">Tech Stack & Core Skills</h3>
+            
+            <div class="skills-layout">
+                <div class="skills-chart-container">
+                    <canvas id="skills-radar"></canvas>
+                </div>
+                
+                <div class="tech-marquee-container">
+                    <div class="tech-marquee">
+                        <span class="tech-tag"><i data-lucide="file-code"></i> HTML5/CSS3</span>
+                        <span class="tech-tag"><i data-lucide="file-json"></i> JavaScript</span>
+                        <span class="tech-tag"><i data-lucide="server"></i> Python</span>
+                        <span class="tech-tag"><i data-lucide="database"></i> SQL Server</span>
+                        <span class="tech-tag"><i data-lucide="github"></i> Git</span>
+                        <span class="tech-tag"><i data-lucide="cpu"></i> AI Workflows</span>
+                        <span class="tech-tag"><i data-lucide="eye"></i> Computer Vision</span>
+                    </div>
+                    <div class="tech-marquee">
+                        <span class="tech-tag"><i data-lucide="file-code"></i> HTML5/CSS3</span>
+                        <span class="tech-tag"><i data-lucide="file-json"></i> JavaScript</span>
+                        <span class="tech-tag"><i data-lucide="server"></i> Python</span>
+                        <span class="tech-tag"><i data-lucide="database"></i> SQL Server</span>
+                        <span class="tech-tag"><i data-lucide="github"></i> Git</span>
+                        <span class="tech-tag"><i data-lucide="cpu"></i> AI Workflows</span>
+                        <span class="tech-tag"><i data-lucide="eye"></i> Computer Vision</span>
                     </div>
                 </div>
             </div>
@@ -355,6 +366,9 @@
 
     <!-- WebGL Fluid -->
     <script src="https://cdn.jsdelivr.net/npm/webgl-fluid"></script>
+
+    <!-- Chart.js for Radar Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="script.js"></script>
 
