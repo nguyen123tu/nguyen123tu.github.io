@@ -219,4 +219,89 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+    // Magnetic Buttons
+    const magnets = document.querySelectorAll('.btn');
+    magnets.forEach(btn => {
+        btn.addEventListener('mousemove', function(e) {
+            const position = btn.getBoundingClientRect();
+            const x = e.clientX - position.left - position.width / 2;
+            const y = e.clientY - position.top - position.height / 2;
+            
+            btn.style.transition = 'transform 0.1s cubic-bezier(0.1, 1, 0.3, 1)';
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        btn.addEventListener('mouseleave', function() {
+            btn.style.transition = 'transform 0.5s cubic-bezier(0.1, 1, 0.3, 1)';
+            btn.style.transform = 'translate(0px, 0px)';
+        });
+    });
+
+    // Matrix Easter Egg (Konami Code style)
+    let secretCode = ['t', 'u', 'n', 'e'];
+    let codeIndex = 0;
+    const canvas = document.getElementById('matrix-canvas');
+    let matrixInterval = null;
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === secretCode[codeIndex]) {
+            codeIndex++;
+            if (codeIndex === secretCode.length) {
+                activateMatrix();
+                codeIndex = 0;
+            }
+        } else {
+            codeIndex = 0;
+            if (e.key.toLowerCase() === secretCode[0]) {
+                codeIndex = 1;
+            }
+        }
+        
+        // Press Escape to stop
+        if (e.key === 'Escape' && canvas && canvas.classList.contains('active')) {
+            deactivateMatrix();
+        }
+    });
+
+    function activateMatrix() {
+        if (!canvas) return;
+        canvas.classList.add('active');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+        for (let x = 0; x < columns; x++) drops[x] = 1;
+
+        if (matrixInterval) clearInterval(matrixInterval);
+        
+        matrixInterval = setInterval(() => {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0F0';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters.charAt(Math.floor(Math.random() * letters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }, 33);
+    }
+
+    function deactivateMatrix() {
+        if (!canvas) return;
+        canvas.classList.remove('active');
+        setTimeout(() => {
+            if (matrixInterval) clearInterval(matrixInterval);
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }, 2000);
+    }
 });

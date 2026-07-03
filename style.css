@@ -732,6 +732,23 @@ body.light-theme .sun-icon {
     opacity: 1;
 }
 
+/* Matrix Easter Egg */
+#matrix-canvas {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 999999; /* above everything */
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 2s ease-in;
+    background: black;
+}
+#matrix-canvas.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+
 /* Typing Cursor */
 .typing-cursor {
     display: inline-block;
