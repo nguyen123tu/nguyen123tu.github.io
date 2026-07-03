@@ -598,4 +598,63 @@ document.addEventListener('DOMContentLoaded', () => {
             pet.style.transform = `scaleX(${petDirection})`;
         }, 50);
     }
+
+    // Reading Progress Bar
+    const progressBar = document.getElementById('scroll-progress');
+    window.addEventListener('scroll', () => {
+        if (progressBar) {
+            const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrollPercent = (scrollTop / scrollHeight) * 100;
+            progressBar.style.width = scrollPercent + '%';
+        }
+    });
+
+    // Cursor Blob (Smooth Follow)
+    const cursorBlob = document.getElementById('cursor-blob');
+    if (cursorBlob) {
+        let blobX = window.innerWidth / 2;
+        let blobY = window.innerHeight / 2;
+        let tgX = blobX;
+        let tgY = blobY;
+
+        document.addEventListener('mousemove', (e) => {
+            tgX = e.clientX;
+            tgY = e.clientY;
+        });
+        
+        function animateBlob() {
+            blobX += (tgX - blobX) * 0.05; // 0.05 is the smoothness factor
+            blobY += (tgY - blobY) * 0.05;
+            cursorBlob.style.left = blobX + 'px';
+            cursorBlob.style.top = blobY + 'px';
+            requestAnimationFrame(animateBlob);
+        }
+        animateBlob();
+    }
+
+    // Barrel Roll Easter Egg
+    let rollCode = ['r', 'o', 'l', 'l'];
+    let rollIndex = 0;
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === rollCode[rollIndex]) {
+            rollIndex++;
+            if (rollIndex === rollCode.length) {
+                doBarrelRoll();
+                rollIndex = 0;
+            }
+        } else {
+            rollIndex = 0;
+            if (e.key.toLowerCase() === rollCode[0]) rollIndex = 1;
+        }
+    });
+
+    function doBarrelRoll() {
+        if (document.body.classList.contains('barrel-roll')) return;
+        document.body.classList.add('barrel-roll');
+        setTimeout(() => {
+            document.body.classList.remove('barrel-roll');
+        }, 2000); // Remove class after animation finishes (2s)
+    }
 });
