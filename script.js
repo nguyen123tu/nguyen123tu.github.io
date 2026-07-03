@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
             COLOR_UPDATE_SPEED: 10,
             PAUSED: false,
             BACK_COLOR: { r: 3, g: 3, b: 5 },
-            TRANSPARENT: false,
+            TRANSPARENT: true,
             BLOOM: true,
             BLOOM_ITERATIONS: 8,
             BLOOM_RESOLUTION: 256,
@@ -524,5 +524,78 @@ document.addEventListener('DOMContentLoaded', () => {
         notif.style.fontWeight = 'bold';
         document.body.appendChild(notif);
         setTimeout(() => notif.remove(), 4000);
+    }
+
+    // Chart.js Radar Chart
+    const ctxRadar = document.getElementById('skills-radar');
+    if (ctxRadar && typeof Chart !== 'undefined') {
+        Chart.defaults.color = '#9ca3af';
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: ['Python', 'JavaScript', 'HTML/CSS', 'SQL', 'AI Workflows', 'Computer Vision'],
+                datasets: [{
+                    label: 'Skill Level',
+                    data: [90, 85, 80, 75, 85, 80],
+                    backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                    borderColor: 'rgba(99, 102, 241, 1)',
+                    pointBackgroundColor: 'rgba(219, 39, 119, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(219, 39, 119, 1)'
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        pointLabels: { color: '#a855f7', font: { size: 12, family: 'Space Grotesk', weight: 'bold' } },
+                        ticks: { display: false, min: 0, max: 100 }
+                    }
+                },
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    }
+
+    // Virtual Pixel Pet Logic
+    const pet = document.getElementById('virtual-pet');
+    if (pet) {
+        let petX = 10;
+        let petDirection = 1;
+        let isPaused = false;
+        
+        setInterval(() => {
+            if (isPaused) {
+                if (Math.random() < 0.05) isPaused = false;
+                return;
+            }
+            
+            const screenWidth = window.innerWidth;
+            
+            // 2% chance to change direction, 1% chance to pause
+            const rand = Math.random();
+            if (rand < 0.02) {
+                petDirection *= -1;
+            } else if (rand < 0.03) {
+                isPaused = true;
+            }
+            
+            petX += 2 * petDirection;
+            
+            if (petX <= 0) {
+                petX = 0;
+                petDirection = 1;
+            } else if (petX >= screenWidth - 80) {
+                petX = screenWidth - 80;
+                petDirection = -1;
+            }
+            
+            pet.style.left = petX + 'px';
+            pet.style.transform = `scaleX(${petDirection})`;
+        }, 50);
     }
 });
