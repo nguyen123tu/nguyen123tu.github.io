@@ -657,4 +657,162 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.classList.remove('barrel-roll');
         }, 2000); // Remove class after animation finishes (2s)
     }
+
+    // Custom Context Menu
+    const contextMenu = document.getElementById('custom-context-menu');
+    if (contextMenu) {
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            const menuWidth = 220;
+            const menuHeight = 180;
+            const adjustedX = x + menuWidth > window.innerWidth ? window.innerWidth - menuWidth - 10 : x;
+            const adjustedY = y + menuHeight > window.innerHeight ? window.innerHeight - menuHeight - 10 : y;
+            
+            contextMenu.style.left = `${adjustedX}px`;
+            contextMenu.style.top = `${adjustedY}px`;
+            contextMenu.classList.add('active');
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!contextMenu.contains(e.target)) {
+                contextMenu.classList.remove('active');
+            }
+        });
+
+        document.getElementById('menu-party')?.addEventListener('click', () => { fireConfetti(); contextMenu.classList.remove('active'); });
+        document.getElementById('menu-roll')?.addEventListener('click', () => { doBarrelRoll(); contextMenu.classList.remove('active'); });
+        document.getElementById('menu-play')?.addEventListener('click', () => { activateAsteroids(); contextMenu.classList.remove('active'); });
+    }
+
+    // Confetti Cannon
+    let partyCode = ['p', 'a', 'r', 't', 'y'];
+    let partyIndex = 0;
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === partyCode[partyIndex]) {
+            partyIndex++;
+            if (partyIndex === partyCode.length) {
+                fireConfetti();
+                partyIndex = 0;
+            }
+        } else {
+            partyIndex = 0;
+            if (e.key.toLowerCase() === partyCode[0]) partyIndex = 1;
+        }
+    });
+
+    function fireConfetti() {
+        if (typeof confetti !== 'undefined') {
+            var duration = 3000;
+            var end = Date.now() + duration;
+
+            (function frame() {
+                confetti({
+                    particleCount: 5,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0 },
+                    colors: ['#a855f7', '#ec4899', '#3b82f6'],
+                    zIndex: 9999999
+                });
+                confetti({
+                    particleCount: 5,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1 },
+                    colors: ['#a855f7', '#ec4899', '#3b82f6'],
+                    zIndex: 9999999
+                });
+
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            }());
+        }
+    }
+
+    // Micro UI Sounds (Using Web Audio API)
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const audioCtx = new AudioContext();
+    
+    function playHoverSound() {
+        if (audioCtx.state === 'suspended') return;
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(1200, audioCtx.currentTime + 0.05);
+        gainNode.gain.setValueAtTime(0.015, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.05);
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.05);
+    }
+
+    function playClickSound() {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gainNode = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(100, audioCtx.currentTime + 0.1);
+        gainNode.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.1);
+        osc.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.1);
+    }
+
+    document.querySelectorAll('a, button, .card, .project-card, .menu-item, .social-icon').forEach(el => {
+        el.addEventListener('mouseenter', playHoverSound);
+        el.addEventListener('click', playClickSound);
+    });
+
+    document.body.addEventListener('click', () => {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+    }, { once: true });
+
+    // Hacker Text Decrypt
+    const hackerLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*";
+    const hackerElements = document.querySelectorAll('.section-header h2, .tech-stack-section h3');
+    
+    const hackerObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                if (el.dataset.decrypted === 'true') return;
+                
+                const originalText = el.dataset.value || el.innerText;
+                if (!el.dataset.value) el.dataset.value = originalText;
+                
+                let iteration = 0;
+                clearInterval(el.interval);
+                
+                el.interval = setInterval(() => {
+                    el.innerText = originalText
+                        .split("")
+                        .map((letter, index) => {
+                            if(index < iteration || letter === ' ') {
+                                return originalText[index];
+                            }
+                            return hackerLetters[Math.floor(Math.random() * 34)];
+                        })
+                        .join("");
+                    
+                    if(iteration >= originalText.length){ 
+                        clearInterval(el.interval);
+                        el.dataset.decrypted = 'true';
+                    }
+                    iteration += 1 / 2;
+                }, 30);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    hackerElements.forEach(el => hackerObserver.observe(el));
 });
