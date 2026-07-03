@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    // Console ASCII Art
+    console.log(`
+  _____       _   _                             
+ |_   _|     | \\ | |                            
+   | |  _   _|  \\| | __ _ _   _ _   _  ___ _ __ 
+   | | | | | | . \` |/ _\` | | | | | | |/ _ \\ '_ \\
+   | | | |_| | |\\  | (_| | |_| | |_| |  __/ | | |
+   \\_/  \\__,_\\_| \\_/\\__, |\\__,_|\\__, |\\___|_| |_|
+                     __/ |       __/ |          
+                    |___/       |___/           
+    Welcome to my portfolio! 🚀 
+    Looking for Easter Eggs? Try typing 'tune' or 'drop' 😉
+    `);
+
     // 1. Preloader
     const preloader = document.getElementById('preloader');
     if (preloader) {
@@ -333,5 +348,181 @@ document.addEventListener('DOMContentLoaded', () => {
             const ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }, 2000);
+    }
+
+    // Gravity Easter Egg
+    let dropCode = ['d', 'r', 'o', 'p'];
+    let dropIndex = 0;
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === dropCode[dropIndex]) {
+            dropIndex++;
+            if (dropIndex === dropCode.length) {
+                activateGravity();
+                dropIndex = 0;
+            }
+        } else {
+            dropIndex = 0;
+            if (e.key.toLowerCase() === dropCode[0]) dropIndex = 1;
+        }
+    });
+
+    let gravityActive = false;
+    function activateGravity() {
+        if (gravityActive || typeof Matter === 'undefined') return;
+        gravityActive = true;
+        
+        document.body.style.overflow = 'hidden';
+
+        const Engine = Matter.Engine,
+              Runner = Matter.Runner,
+              Bodies = Matter.Bodies,
+              Composite = Matter.Composite;
+
+        const engine = Engine.create();
+        
+        const allElements = Array.from(document.querySelectorAll('.card, .project-card, .btn, h1, h2, h3, p, img, .nav-links li'));
+        const bodies = [];
+        
+        allElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.width === 0 || rect.height === 0) return;
+            
+            const body = Bodies.rectangle(
+                rect.left + rect.width / 2, 
+                rect.top + rect.height / 2, 
+                rect.width, 
+                rect.height, 
+                { restitution: 0.6, friction: 0.1 }
+            );
+            
+            el.style.position = 'fixed';
+            el.style.left = rect.left + 'px';
+            el.style.top = rect.top + 'px';
+            el.style.width = rect.width + 'px';
+            el.style.height = rect.height + 'px';
+            el.style.margin = '0';
+            el.style.zIndex = '100000';
+            el.style.transition = 'none';
+            
+            bodies.push({ body, el });
+            Composite.add(engine.world, body);
+        });
+        
+        const floor = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth, 100, { isStatic: true });
+        const leftWall = Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true });
+        const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight, { isStatic: true });
+        
+        Composite.add(engine.world, [floor, leftWall, rightWall]);
+
+        const runner = Runner.create();
+        Runner.run(runner, engine);
+
+        function updateDOM() {
+            bodies.forEach(b => {
+                b.el.style.left = (b.body.position.x - b.el.offsetWidth / 2) + 'px';
+                b.el.style.top = (b.body.position.y - b.el.offsetHeight / 2) + 'px';
+                b.el.style.transform = `rotate(${b.body.angle}rad)`;
+            });
+            requestAnimationFrame(updateDOM);
+        }
+        updateDOM();
+    }
+
+    // WebGL Fluid Background
+    if (typeof WebGLFluid !== 'undefined') {
+        WebGLFluid(document.querySelector('#fluid-canvas'), {
+            IMMEDIATE: true,
+            TRIGGER: 'hover',
+            SIM_RESOLUTION: 128,
+            DYE_RESOLUTION: 1024,
+            CAPTURE_RESOLUTION: 512,
+            DENSITY_DISSIPATION: 1,
+            VELOCITY_DISSIPATION: 0.2,
+            PRESSURE: 0.8,
+            PRESSURE_ITERATIONS: 20,
+            CURL: 30,
+            SPLAT_RADIUS: 0.25,
+            SPLAT_FORCE: 6000,
+            SHADING: true,
+            COLORFUL: true,
+            COLOR_UPDATE_SPEED: 10,
+            PAUSED: false,
+            BACK_COLOR: { r: 3, g: 3, b: 5 },
+            TRANSPARENT: false,
+            BLOOM: true,
+            BLOOM_ITERATIONS: 8,
+            BLOOM_RESOLUTION: 256,
+            BLOOM_INTENSITY: 0.8,
+            BLOOM_THRESHOLD: 0.6,
+            BLOOM_SOFT_KNEE: 0.7,
+            SUNRAYS: true,
+            SUNRAYS_RESOLUTION: 196,
+            SUNRAYS_WEIGHT: 1.0,
+        });
+    }
+
+    // Lofi Music Player
+    const lofiPlayer = document.getElementById('lofi-player');
+    const lofiAudio = document.getElementById('lofi-audio');
+    const lofiStatus = document.querySelector('.lofi-status');
+
+    if (lofiPlayer && lofiAudio) {
+        lofiAudio.volume = 0.4;
+        lofiPlayer.addEventListener('click', () => {
+            if (lofiAudio.paused) {
+                lofiAudio.play().then(() => {
+                    lofiPlayer.classList.add('playing');
+                    lofiStatus.textContent = 'Playing...';
+                }).catch(err => {
+                    console.log("Audio play failed:", err);
+                });
+            } else {
+                lofiAudio.pause();
+                lofiPlayer.classList.remove('playing');
+                lofiStatus.textContent = 'Click to Play';
+            }
+        });
+    }
+
+    // Asteroids Game Easter Egg
+    let playCode = ['p', 'l', 'a', 'y'];
+    let playIndex = 0;
+    
+    document.addEventListener('keydown', (e) => {
+        if (e.key.toLowerCase() === playCode[playIndex]) {
+            playIndex++;
+            if (playIndex === playCode.length) {
+                activateAsteroids();
+                playIndex = 0;
+            }
+        } else {
+            playIndex = 0;
+            if (e.key.toLowerCase() === playCode[0]) playIndex = 1;
+        }
+    });
+
+    function activateAsteroids() {
+        if (document.getElementById('asteroids-script')) return;
+        const script = document.createElement('script');
+        script.id = 'asteroids-script';
+        script.src = 'https://cdn.jsdelivr.net/gh/erkie/erkie.github.io/asteroids.min.js';
+        document.body.appendChild(script);
+        
+        // Show a quick notification
+        const notif = document.createElement('div');
+        notif.textContent = "Use Arrow Keys to Move, SPACE to Shoot!";
+        notif.style.position = 'fixed';
+        notif.style.top = '20px';
+        notif.style.left = '50%';
+        notif.style.transform = 'translateX(-50%)';
+        notif.style.background = 'var(--accent-3)';
+        notif.style.color = '#fff';
+        notif.style.padding = '10px 20px';
+        notif.style.borderRadius = '20px';
+        notif.style.zIndex = '1000000';
+        notif.style.fontWeight = 'bold';
+        document.body.appendChild(notif);
+        setTimeout(() => notif.remove(), 4000);
     }
 });

@@ -21,8 +21,25 @@
         <div class="loader-bar"></div>
     </div>
 
+    <!-- WebGL Fluid Background -->
+    <canvas id="fluid-canvas"></canvas>
+
     <!-- Matrix Easter Egg Canvas -->
     <canvas id="matrix-canvas"></canvas>
+
+    <!-- Lofi Music Player -->
+    <div id="lofi-player" class="lofi-player">
+        <div class="vinyl-record">
+            <div class="vinyl-center"></div>
+        </div>
+        <div class="lofi-info">
+            <span class="lofi-title">Chill Beats</span>
+            <span class="lofi-status">Click to Play</span>
+        </div>
+        <audio id="lofi-audio" loop preload="none">
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+        </audio>
+    </div>
 
     <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
@@ -65,7 +82,7 @@
 
                 <h1 class="hero-title">
                     Hi, I'm <br>
-                    <span class="text-gradient">Tu Nguyen</span>
+                    <span class="text-gradient glitch-effect" data-text="Tu Nguyen">Tu Nguyen</span>
                 </h1>
 
                 <p class="hero-subtitle">
@@ -332,6 +349,12 @@
     
     <!-- Vanilla Tilt for 3D Effects -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+    <!-- Matter.js for Gravity Easter Egg -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+
+    <!-- WebGL Fluid -->
+    <script src="https://cdn.jsdelivr.net/npm/webgl-fluid"></script>
 
     <script src="script.js"></script>
 
