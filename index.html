@@ -4,395 +4,286 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tune | Portfolio</title>
+    <title>Nguyen Tung | Software Developer</title>
     <meta name="description"
-        content="Personal portfolio and blog of Nguyen Tung. Software Developer passionate about AI, Web Development, and technology.">
+        content="Portfolio of Nguyen Tung. Software Developer specializing in Web Development and AI.">
+    <!-- SEO & Social Media Meta Tags -->
+    <meta property="og:title" content="Nguyen Tu | Software Developer">
+    <meta property="og:description"
+        content="Portfolio of Nguyen Tu. Software Developer specializing in Mobile and Web Development.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nguyen123tu.github.io/">
+    <meta property="og:image"
+        content="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80">
+    <meta property="og:image:alt" content="Code Editor Theme Portfolio">
+
+    <!-- Favicon (Emoji computer) -->
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts: Space Grotesk, Inter, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
     <script src="https://unpkg.com/lucide@0.344.0"></script>
 </head>
 
-<body class="dark-theme">
-    <!-- Scroll Progress Bar -->
+<body>
     <div id="scroll-progress"></div>
-    
-    <!-- Cursor Blob -->
-    <div id="cursor-blob"></div>
-
-    <!-- Custom Context Menu -->
-    <div id="custom-context-menu" class="context-menu">
-        <div class="menu-item" id="menu-party"><i data-lucide="party-popper"></i> Party Time</div>
-        <div class="menu-item" id="menu-roll"><i data-lucide="rotate-cw"></i> Barrel Roll</div>
-        <div class="menu-item" id="menu-play"><i data-lucide="rocket"></i> Play Asteroids</div>
-        <div class="menu-divider"></div>
-        <div class="menu-item" id="menu-github"><a href="https://github.com/nguyen123tu" target="_blank" style="color: inherit; text-decoration: none; display: flex; gap: 0.75rem; align-items: center;"><i data-lucide="github"></i> My GitHub</a></div>
-    </div>
-
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="loader-logo">Tune<span class="dot">.</span></div>
-        <div class="loader-bar"></div>
-    </div>
-
-    <!-- WebGL Fluid Background -->
-    <canvas id="fluid-canvas"></canvas>
-
-    <!-- Matrix Easter Egg Canvas -->
-    <canvas id="matrix-canvas"></canvas>
-
-    <!-- Lofi Music Player -->
-    <div id="lofi-player" class="lofi-player">
-        <div class="vinyl-record">
-            <div class="vinyl-center"></div>
-        </div>
-        <div class="lofi-info">
-            <span class="lofi-title">Chill Beats</span>
-            <span class="lofi-status">Click to Play</span>
-        </div>
-        <audio id="lofi-audio" loop preload="none">
-            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
-        </audio>
-    </div>
-
-    <!-- Virtual Pixel Pet -->
-    <div id="virtual-pet">
-        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif" alt="Pixel Pet">
-    </div>
-
-    <!-- Custom Cursor -->
-    <div class="custom-cursor"></div>
-
-    <div class="ambient-light light-1"></div>
-    <div class="ambient-light light-2"></div>
-    <div class="ambient-light light-3"></div>
-    <div class="noise"></div>
 
     <nav class="navbar">
         <div class="nav-content">
-            <a href="#" class="logo">Tune<span class="dot">.</span></a>
-
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#articles">Articles</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#ImageChill">ImageChiller</a></li>
+            <a href="#" class="logo">TN.</a>
+            <ul class="nav-links mono-text">
+                <li><a href="#about">01. About</a></li>
+                <li><a href="#skills">02. Skills</a></li>
+                <li><a href="#projects">03. Projects</a></li>
+                <li><a href="#experience">04. Experience</a></li>
             </ul>
-
-            <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Theme">
-                <i data-lucide="sun" class="sun-icon"></i>
-                <i data-lucide="moon" class="moon-icon"></i>
-            </button>
+            <a href="#contact" class="btn btn-primary mono-text">contact()</a>
         </div>
     </nav>
 
     <main class="container">
 
-        <!-- Hero Section -->
+        <!-- 1. HERO -->
         <section id="hero" class="hero section-reveal">
-            <div class="hero-content">
-                <div class="badges-wrapper">
-                    <span class="badge">Welcome</span>
-                    <span class="badge status-badge">
-                        <span class="status-dot"></span>
-                        <span id="live-time">📍 Vietnam • --:--</span>
-                    </span>
-                </div>
-
-                <h1 class="hero-title">
-                    Hi, I'm <br>
-                    <span class="text-gradient glitch-effect" data-text="Tu Nguyen">Tu Nguyen</span>
-                </h1>
-
-                <p class="hero-subtitle">
-                    <span id="typed-text"></span><span class="typing-cursor">|</span>
-                </p>
-
-                <div class="hero-actions">
-                    <a href="#articles" class="btn btn-primary">
-                        Read Articles
-                    </a>
-
-                    <a href="https://github.com/nguyen123tu" target="_blank" class="btn btn-secondary">
-                        <i data-lucide="github"></i>
-                        GitHub
+            <div class="hero-breadcrumb mono-text">
+                ~/portfolio/home<span class="blinking-cursor">_</span>
+            </div>
+            <h1 class="hero-title">
+                Building robust <br>
+                <span class="accent-text">systems</span> & interfaces.
+            </h1>
+            <p class="hero-subtitle">
+                Backend-focused Developer passionate about Python, FastAPI, and integrating AI into scalable
+                architectures.
+            </p>
+            <div class="hero-metrics mono-text" style="align-items: center; flex-wrap: wrap;">
+                <div class="metric"><span class="accent-text">4+</span> YRS_EXP</div>
+                <div class="metric"><span class="accent-text">10+</span> PROJECTS</div>
+                <div class="metric"><span class="accent-text">100%</span> COMMITMENT</div>
+                <div class="metric">
+                    <a href="#" class="btn btn-primary mono-text"
+                        style="padding: 0.5rem 1rem; gap: 0.5rem; display: flex; align-items: center;"
+                        title="Bạn thay # bằng link file PDF nhé">
+                        <i data-lucide="download" style="width: 14px; height: 14px;"></i> resume.pdf
                     </a>
                 </div>
             </div>
         </section>
 
-        <!-- Tech Stack Section -->
-        <section class="tech-stack-section section-reveal">
-            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--text-primary);">Tech Stack & Core Skills</h3>
-            
-            <div class="skills-layout">
-                <div class="skills-chart-container">
-                    <canvas id="skills-radar"></canvas>
+        <!-- 2. ABOUT -->
+        <section id="about" class="about-section section-reveal">
+            <div class="section-label mono-text">01. ABOUT</div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2 class="section-title">Beyond the Code</h2>
+                    <p>I started my journey at Mien Tay Construction University, where I developed a strong foundation
+                        in logical thinking and structured systems. Today, I build full-stack web applications and
+                        explore AI-driven workflows.</p>
+                    <p>I believe in writing clean, maintainable code and prioritizing user experience over unnecessary
+                        complexity.</p>
                 </div>
-                
-                <div class="tech-marquee-container">
-                    <div class="tech-marquee">
-                        <span class="tech-tag"><i data-lucide="file-code"></i> HTML5/CSS3</span>
-                        <span class="tech-tag"><i data-lucide="file-json"></i> JavaScript</span>
-                        <span class="tech-tag"><i data-lucide="server"></i> Python</span>
-                        <span class="tech-tag"><i data-lucide="database"></i> SQL Server</span>
-                        <span class="tech-tag"><i data-lucide="github"></i> Git</span>
-                        <span class="tech-tag"><i data-lucide="cpu"></i> AI Workflows</span>
-                        <span class="tech-tag"><i data-lucide="eye"></i> Computer Vision</span>
+
+                <div class="editor-window card-hover">
+                    <div class="editor-header">
+                        <div class="editor-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <div class="editor-title mono-text">profile.json</div>
                     </div>
-                    <div class="tech-marquee">
-                        <span class="tech-tag"><i data-lucide="file-code"></i> HTML5/CSS3</span>
-                        <span class="tech-tag"><i data-lucide="file-json"></i> JavaScript</span>
-                        <span class="tech-tag"><i data-lucide="server"></i> Python</span>
-                        <span class="tech-tag"><i data-lucide="database"></i> SQL Server</span>
-                        <span class="tech-tag"><i data-lucide="github"></i> Git</span>
-                        <span class="tech-tag"><i data-lucide="cpu"></i> AI Workflows</span>
-                        <span class="tech-tag"><i data-lucide="eye"></i> Computer Vision</span>
+                    <div class="editor-body mono-text">
+                        <pre><code>{
+  <span class="code-key">"name"</span>: <span class="code-string">"Nguyen Tu"</span>,
+  <span class="code-key">"role"</span>: <span class="code-string">"Backend / AI Developer"</span>,
+  <span class="code-key">"core_stack"</span>: [
+    <span class="code-string">"Python / FastAPI"</span>,
+    <span class="code-string">"SQL Server / PostgreSQL"</span>,
+    <span class="code-string">"React"</span>
+  ],
+  <span class="code-key">"superpower"</span>: <span class="code-string">"Integrating AI APIs into production"</span>,
+  <span class="code-key">"ai_assistants"</span>: [<span class="code-string">"Antigravity"</span>, <span class="code-string">"Claude"</span>, <span class="code-string">"ChatGPT"</span>]
+}</code></pre>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Articles Section -->
-        <section id="articles" class="articles section-reveal">
-            <div class="section-header">
-                <h2>Latest Writings</h2>
+        <!-- 3. SKILLS -->
+        <section id="skills" class="skills-section section-reveal">
+            <div class="section-label mono-text">02. SKILLS</div>
+            <h2 class="section-title">Technical Arsenal</h2>
 
-                <a href="#" class="view-all">
-                    View All
-                    <i data-lucide="arrow-right"></i>
-                </a>
-            </div>
-
-            <div class="grid">
-
-                <!-- Article 1 -->
-                <article class="card">
-                    <div class="card-date">
-                        September 19, 2022
+            <div class="skills-grid">
+                <!-- Backend -->
+                <div class="skill-category">
+                    <h3 class="mono-text">[Backend & Data]</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Python / FastAPI</span>
+                            <span class="mono-text">90%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 90%;"></div>
+                        </div>
                     </div>
-
-                    <h3>
-                        <a href="https://mtu.edu.vn/" target="_blank">
-                            My Journey at MTU Construction University
-                        </a>
-                    </h3>
-
-                    <p>
-                        I began my academic journey at Mien Tay Construction
-                        University with strong ambitions and a passion for
-                        technology and software development.
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Education</span>
-                        <span class="tag">MTU</span>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>SQL Server / PostgreSQL</span>
+                            <span class="mono-text">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%;"></div>
+                        </div>
                     </div>
-                </article>
+                </div>
 
-                <!-- Article 2 -->
-                <article class="card">
-                    <div class="card-date">
-                        May 01, 2023
+                <!-- Frontend -->
+                <div class="skill-category">
+                    <h3 class="mono-text">[Frontend]</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>React</span>
+                            <span class="mono-text">80%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 80%;"></div>
+                        </div>
                     </div>
-
-                    <h3>
-                        <a href="#">
-                            Vibe Coding with AI
-                        </a>
-                    </h3>
-
-                    <p>
-                        Explored AI-powered development workflows while learning
-                        Python, C#, SQL Server, MySQL, modern frameworks,
-                        and core web technologies including HTML, CSS, and JavaScript.
-                    </p>
-
-                    <div class="tags">
-                        <span class="tag">Development</span>
-                        <span class="tag">AI</span>
-                        <span class="tag">Vibe Coding</span>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>UI/UX Integration</span>
+                            <span class="mono-text">75%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 75%;"></div>
+                        </div>
                     </div>
-                </article>
+                </div>
 
+                <!-- Tools / Infra -->
+                <div class="skill-category">
+                    <h3 class="mono-text">[Infra & AI]</h3>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>Docker & Git</span>
+                            <span class="mono-text">85%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-info">
+                            <span>AI APIs & Prompts</span>
+                            <span class="mono-text">95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section id="projects" class="projects section-reveal">
+        <!-- 4. PROJECTS -->
+        <section id="projects" class="projects-section section-reveal">
+            <div class="section-label mono-text">03. PROJECTS</div>
+            <h2 class="section-title">Selected Works</h2>
 
-            <div class="section-header">
-                <h2>Selected Projects</h2>
-            </div>
-
-            <div class="grid">
-
+            <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i data-lucide="box"></i>
+                <div class="project-card card-hover">
+                    <div class="project-header">
+                        <h3 class="project-title">MediaDownloader_Tune</h3>
+                        <span class="file-extension mono-text">.py</span>
                     </div>
-
-                    <div class="project-info">
-                        <h3>
-                            <a href="#">
-                                Nexus Framework
-                            </a>
-                        </h3>
-
-                        <p>
-                            A lightweight CSS framework designed for speed,
-                            accessibility, and modern web development.
-                        </p>
+                    <p class="project-desc">A Python-based utility script for downloading media.</p>
+                    <div class="project-impact mono-text">
+                        <i data-lucide="check"></i> Python Scripting
                     </div>
+                    <a href="https://github.com/nguyen123tu/MediaDownloader_Tune" target="_blank"
+                        class="project-link-overlay"></a>
                 </div>
 
                 <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-icon">
-                        <i data-lucide="graduation-cap"></i>
+                <div class="project-card card-hover">
+                    <div class="project-header">
+                        <h3 class="project-title">NDKHM_DDSV_MTU</h3>
+                        <span class="file-extension mono-text">Python/SQLServer</span>
                     </div>
+                    <p class="project-desc">Student management and data processing system developed for Mien Tay
+                        Construction University using Dart.</p>
+                    <div class="project-impact mono-text">
+                        <i data-lucide="check"></i> System Architecture
+                    </div>
+                    <a href="https://github.com/nguyen123tu/NDKHM_DDSV_MTU" target="_blank"
+                        class="project-link-overlay"></a>
+                </div>
 
-                    <div class="project-info">
-                        <h3>
-                            <a href="https://github.com/nguyen123tu/NDKHM_DDSV_MTU" target="_blank">
-                                NDKHM_DDSV_MTU
-                            </a>
-                        </h3>
 
-                        <p>
-                            Graduation project developed at Mien Tay
-                            Construction University, focusing on student
-                            management and data processing systems.
-                        </p>
+            </div>
+        </section>
+
+        <!-- 5. EXPERIENCE -->
+        <section id="experience" class="experience-section section-reveal">
+            <div class="section-label mono-text">04. EXPERIENCE</div>
+            <h2 class="section-title">Journey</h2>
+
+            <div class="timeline">
+                <div class="timeline-item card-hover">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date mono-text">2023 - Present</div>
+                    <div class="timeline-content">
+                        <h3>Freelance Developer & AI Explorer</h3>
+                        <p>Exploring AI-powered development workflows, building full-stack web solutions, and
+                            experimenting with Vibe Coding techniques.</p>
                     </div>
                 </div>
 
-            </div>
-        </section>
-
-        <!-- GitHub Activity Section -->
-        <section id="github" class="github-section section-reveal">
-            <div class="section-header">
-                <h2>GitHub Activity</h2>
-                <a href="https://github.com/nguyen123tu" target="_blank" class="view-all">
-                    Follow Me <i data-lucide="external-link"></i>
-                </a>
-            </div>
-            
-            <div class="github-card card" data-tilt>
-                <div class="github-chart-container">
-                    <img src="https://ghchart.rshah.org/6366f1/nguyen123tu" alt="Nguyen Tung's Github chart" />
+                <div class="timeline-item card-hover">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date mono-text">2018 - 2022</div>
+                    <div class="timeline-content">
+                        <h3>Mien Tay Construction University (MTU)</h3>
+                        <p>Studied and developed strong foundations in engineering, data processing, and logical system
+                            design.</p>
+                    </div>
                 </div>
             </div>
         </section>
-
-        <!-- Photo Gallery -->
-        <section id="ImageChill" class="gallery-section section-reveal">
-            <div class="section-header" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
-                <h2>ImageChiller</h2>
-                <p style="color: var(--text-secondary); font-size: 0.95rem;">A collection of my favorite moments and aesthetics.</p>
-            </div>
-            
-            <div class="gallery-grid">
-                <!-- Gallery Items -->
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="Tech Setup">
-                    <div class="gallery-overlay"><i data-lucide="zoom-in"></i></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="Cyberpunk City">
-                    <div class="gallery-overlay"><i data-lucide="zoom-in"></i></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?auto=format&fit=crop&w=800&q=80" alt="Workspace">
-                    <div class="gallery-overlay"><i data-lucide="zoom-in"></i></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Abstract Art">
-                    <div class="gallery-overlay"><i data-lucide="zoom-in"></i></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80" alt="Coding">
-                    <div class="gallery-overlay"><i data-lucide="zoom-in"></i></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="https://images.unsplash.com/photo-1555680202-c86f0e12f086?auto=format&fit=crop&w=800&q=80" alt="Code Display">
-                    <div class="gallery-overlay"><i data-lucide="zoom-in"></i></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Lightbox Modal -->
-        <div id="lightbox" class="lightbox">
-            <span class="lightbox-close"><i data-lucide="x"></i></span>
-            <img id="lightbox-img" class="lightbox-content" src="">
-        </div>
     </main>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- 6. CONTACT (Inverted) -->
+    <footer id="contact" class="footer-section section-reveal">
         <div class="container footer-content">
-
-            <p>
-                &copy; 2026 Tune. All rights reserved.
+            <h2 class="section-title">Ready to initiate connection?</h2>
+            <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
             </p>
 
-            <div class="social-links">
+            <a href="mailto:tunguyen994@gmail.com" class="btn btn-primary btn-large mono-text">execute_email()</a>
 
-                <a href="https://www.youtube.com/@Tunguyen994" target="_blank">
-                    <i data-lucide="youtube"></i>
-                </a>
+            <div class="social-links mono-text">
+                <a href="https://github.com/nguyen123tu" target="_blank">[github]</a>
+                <a href="https://www.youtube.com/@Tunguyen994" target="_blank">[youtube]</a>
+                <a href="https://zalo.me/0358160623" target="_blank">[zalo]</a>
+                <a href="https://www.facebook.com/NDTYtunguyen" target="_blank">[facebook]</a>
+            </div>
 
-                <a href="https://github.com/nguyen123tu" target="_blank">
-                    <i data-lucide="github"></i>
-                </a>
-
-                <a href="https://www.tiktok.com/@ytunguyen99" target="_blank">
-                    <i data-lucide="music-4"></i>
-                </a>
-
-                <a href="https://zalo.me/0358160623" target="_blank">
-                    <i data-lucide="message-circle"></i>
-                </a>
-
-                <a href="https://www.facebook.com/NDTYtunguyen" target="_blank">
-                    <i data-lucide="facebook"></i>
-                </a>
-
+            <div class="footer-bottom mono-text">
+                &copy; 2026 NGUYEN TU. ALL SYSTEMS NOMINAL.
             </div>
         </div>
     </footer>
 
-    <!-- Back to Top -->
-    <div id="back-to-top" class="back-to-top">
-        <i data-lucide="arrow-up"></i>
-    </div>
-
-    <!-- Lenis for Smooth Scrolling -->
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
-    
-    <!-- Vanilla Tilt for 3D Effects -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
-
-    <!-- Matter.js for Gravity Easter Egg -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
-
-    <!-- WebGL Fluid -->
-    <script src="https://cdn.jsdelivr.net/npm/webgl-fluid"></script>
-
-    <!-- Chart.js for Radar Chart -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <!-- Canvas Confetti -->
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
     <script src="script.js"></script>
-
-    <script>
-        lucide.createIcons();
-    </script>
+    <script>lucide.createIcons();</script>
 </body>
 
 </html>
