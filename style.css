@@ -438,6 +438,52 @@ a:hover {
 }
 
 /* ==========================================================================
+   Roadmap Section
+   ========================================================================== */
+.roadmap-section {
+    padding: 6rem 0;
+}
+.roadmap-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+.roadmap-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 2rem;
+}
+.roadmap-month {
+    color: var(--accent);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+.roadmap-title {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+.roadmap-list {
+    list-style: none;
+    padding: 0;
+}
+.roadmap-list li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+.roadmap-list li::before {
+    content: ">";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-weight: bold;
+}
+
+/* ==========================================================================
    Contact Section (Inverted)
    ========================================================================== */
 .footer-section {
@@ -499,6 +545,9 @@ a:hover {
         grid-template-columns: 1fr;
     }
     .projects-grid {
+        grid-template-columns: 1fr;
+    }
+    .roadmap-grid {
         grid-template-columns: 1fr;
     }
 }
