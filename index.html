@@ -35,9 +35,9 @@
 <body>
     <div id="scroll-progress"></div>
 
-    <nav class="navbar">
+    <header class="navbar">
         <div class="nav-content">
-            <a href="#" class="logo">TN.</a>
+            <a href="#" class="logo" aria-label="Home">TN.</a>
             <ul class="nav-links mono-text">
                 <li><a href="#about">01. About</a></li>
                 <li><a href="#skills">02. Skills</a></li>
@@ -45,9 +45,14 @@
                 <li><a href="#experience">04. Experience</a></li>
                 <li><a href="#roadmap">05. Roadmap</a></li>
             </ul>
-            <a href="#contact" class="btn btn-primary mono-text">contact()</a>
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-primary mono-text nav-contact-btn">contact()</a>
+                <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
         </div>
-    </nav>
+    </header>
 
     <main class="container">
 
@@ -69,9 +74,9 @@
                 <div class="metric"><span class="accent-text">10+</span> PROJECTS</div>
                 <div class="metric"><span class="accent-text">100%</span> COMMITMENT</div>
                 <div class="metric">
-                    <a href="#" class="btn btn-primary mono-text"
+                    <a href="resume.pdf" class="btn btn-primary mono-text"
                         style="padding: 0.5rem 1rem; gap: 0.5rem; display: flex; align-items: center;"
-                        title="Bạn thay # bằng link file PDF nhé">
+                        title="Download Resume">
                         <i data-lucide="download" style="width: 14px; height: 14px;"></i> resume.pdf
                     </a>
                 </div>
